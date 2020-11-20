@@ -10,7 +10,7 @@ public class Sudoku extends Formula {
     public int[][] matrix;
 
     public Sudoku(int[][] sudoku ) throws IOException {
-        super(Sudoku2SatBuilder.Sudoku2Sat());
+        super(Sudoku2SatBuilder.Sudoku2Sat(sudoku));
         this.matrix = sudoku;
         this.process();
         writeSudokuMiniSat();
@@ -29,7 +29,7 @@ public class Sudoku extends Formula {
 
 
     public void writeSudokuMiniSat() throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/com/company/minisatsudoku/test.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/com/company/minisatsudoku/test.cnf"));
 
         bw.write("p cnf " + this.getMap().size() + " " + this.getClauses().size());
         bw.newLine();

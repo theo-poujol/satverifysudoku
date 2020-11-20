@@ -9,13 +9,15 @@ public class Sudoku2SatBuilder {
 
     private static Set<Clause> clauses = new HashSet<>();
 
-    public static Formula Sudoku2Sat() {
+
+    public static Formula Sudoku2Sat(int[][] sudoku) {
 
         AtLeastOneOccurence();
         RowBuild();
         ColBuild();
         BoxBuild();
         AtMaxOneOccurence();
+        testOther(sudoku);
 
         return new Formula(clauses);
     }
@@ -80,27 +82,27 @@ public class Sudoku2SatBuilder {
     }
 
     public static void BoxBuild() {
-        /*int cpt = 0;
-        for (int k = 0; k < 9; k+= 3) {
-            List<Literal> clause = new ArrayList<Literal>();
-            for (int i = cpt; i < cpt + 3; i++) {
-                for (int n =1; n < 10; n++) {
-                    for (int jsec = cpt; jsec < cpt + 3; jsec++) {
-                        for (int j = cpt+1; j < jsec; j++) {
-                            String l1 = Integer.toString(i) + Integer.toString(j) + Integer.toString(n);
-                            String l2 = Integer.toString(i) + Integer.toString(jsec) + Integer.toString(n);
-                            Literal literal1 = new Literal(l1, n, false);
-                            Literal literal2 = new Literal(l2, n, false);
-                            clause.add(literal1);
-                            clause.add(literal2);
-                        }
-                    }
-                }
-            }
-            clauses.add(new Clause(clause));
-            if (cpt + 3 < 9) cpt += 3;
-
-        }*/
+//        int cpt = 0;
+//        for (int k = 0; k < 9; k+= 3) {
+//            List<Literal> clause = new ArrayList<Literal>();
+//            for (int i = cpt; i < cpt + 3; i++) {
+//                for (int n =1; n < 10; n++) {
+//                    for (int jsec = cpt; jsec < cpt + 3; jsec++) {
+//                        for (int j = cpt+1; j < jsec; j++) {
+//                            String l1 = Integer.toString(i) + Integer.toString(j) + Integer.toString(n);
+//                            String l2 = Integer.toString(i) + Integer.toString(jsec) + Integer.toString(n);
+//                            Literal literal1 = new Literal(l1, n, false);
+//                            Literal literal2 = new Literal(l2, n, false);
+//                            clause.add(literal1);
+//                            clause.add(literal2);
+//                        }
+//                    }
+//                }
+//            }
+//            clauses.add(new Clause(clause));
+//            if (cpt + 3 < 9) cpt += 3;
+//
+//        }
 
         int block = 9 / 3;
         for (int b_i = 0; b_i < 9; b_i += block) {
@@ -127,6 +129,23 @@ public class Sudoku2SatBuilder {
             }
         }
 
+    }
+
+
+
+    public static void testOther(int[][] sudoku) {
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (sudoku[i][j] > 0) {
+                    int val = sudoku[i][j] - 1;
+                    for (int n = 0; n < 9; n++) {
+                        String l = i + Integer.toString(j) + n;
+                        clauses.add(new Clause((n == val) ? new Literal(l,n,true) : new Literal(l,n,false)));
+                    }
+                }
+            }
+        }
     }
 
 }
