@@ -1,9 +1,7 @@
 package com.company.Sudoku2Sat;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Sudoku2SatBuilder {
 
@@ -15,9 +13,9 @@ public class Sudoku2SatBuilder {
         AtLeastOneOccurence();
         RowBuild();
         ColBuild();
-        //BoxBuild();
+        BoxBuild();
         AtMaxOneOccurence();
-        testOther(sudoku);
+        singletonClause(sudoku);
 
         return new Formula(clauses);
     }
@@ -104,36 +102,36 @@ public class Sudoku2SatBuilder {
 //
 //        }
 
-        int block = 9 / 3;
-        for (int b_i = 0; b_i < 9; b_i += block) {
-            for (int b_j = 0; b_j < 9; b_j += block) {
-                // for all numbers
-                for (int n = 1; n < 10; n++) {
-                    // all <(i1,j1),(i2,j2)> pairs
-                    for (int i1 = 0; i1 < block; i1++) {
-                        for (int j1 = 0; j1 < block; j1++) {
-                            for (int i2 = 0; i2 < block; i2++) {
-                                for (int j2 = 0; j2 < block; j2++) {
-                                    if (i1 != i2 || j1 != j2) {
-                                        String l1 = Integer.toString(b_i) + Integer.toString(i1) + Integer.toString(b_j) + Integer.toString(j1) + Integer.toString(n);
-                                        String l2 = Integer.toString(b_i) + Integer.toString(i2) + Integer.toString(b_j) + Integer.toString(j2) + Integer.toString(n);
-                                        Literal literal1 = new Literal(l1, n, false);
-                                        Literal literal2 = new Literal(l2, n, false);
-                                        clauses.add(new Clause(literal1, literal2));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//        int block = 9 / 3;
+//        for (int b_i = 0; b_i < 9; b_i += block) {
+//            for (int b_j = 0; b_j < 9; b_j += block) {
+//                // for all numbers
+//                for (int n = 1; n < 10; n++) {
+//                    // all <(i1,j1),(i2,j2)> pairs
+//                    for (int i1 = 0; i1 < block; i1++) {
+//                        for (int j1 = 0; j1 < block; j1++) {
+//                            for (int i2 = 0; i2 < block; i2++) {
+//                                for (int j2 = 0; j2 < block; j2++) {
+//                                    if (i1 != i2 || j1 != j2) {
+//                                        String l1 = Integer.toString(b_i) + Integer.toString(i1) + Integer.toString(b_j) + Integer.toString(j1) + Integer.toString(n);
+//                                        String l2 = Integer.toString(b_i) + Integer.toString(i2) + Integer.toString(b_j) + Integer.toString(j2) + Integer.toString(n);
+//                                        Literal literal1 = new Literal(l1, n, false);
+//                                        Literal literal2 = new Literal(l2, n, false);
+//                                        clauses.add(new Clause(literal1, literal2));
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
     }
 
 
 
-    public static void testOther(int[][] sudoku) {
+    public static void singletonClause(int[][] sudoku) {
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
