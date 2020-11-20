@@ -51,9 +51,5 @@ public class Main {
 
         System.out.println("taille " + sudoku.getClauses().size());
 
-        //boolean sat  = SatSolver.solve(sudoku);
-
-        //System.out.println( (sat) ? "Satisfiable" : "Insatisfiable");
-
     }
 }
