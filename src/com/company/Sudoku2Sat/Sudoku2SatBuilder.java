@@ -129,7 +129,32 @@ public class Sudoku2SatBuilder {
 
     }
 
+    public static void newRow() {
 
+        for(int x = 0; x < 9; x++) {
+            for (int z = 1; z < 10; z++) {
+                List<Literal> clause = new ArrayList<Literal>();
+                for (int y = 0; y < 9; y++) {
+                    String l_name = x + Integer.toString(y) + z;
+                    clause.add(new Literal(l_name, z, true));
+                }
+                clauses.add(new Clause(clause));
+            }
+        }
+    }
+
+    public static void newCol() {
+        for(int y = 0; y < 9; y++) {
+            for (int z = 1; z < 10; z++) {
+                List<Literal> clause = new ArrayList<Literal>();
+                for (int x = 0; x < 9; x++) {
+                    String l_name = x + Integer.toString(y) + z;
+                    clause.add(new Literal(l_name, z, true));
+                }
+                clauses.add(new Clause(clause));
+            }
+        }
+    }
 
     public static void singletonClause(int[][] sudoku) {
 
