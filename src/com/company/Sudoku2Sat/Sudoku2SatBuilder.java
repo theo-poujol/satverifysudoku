@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Sudoku2SatBuilder {
 
-    private static Set<Clause> clauses = new HashSet<>();
+    private static List<Clause> clauses = new ArrayList<>();
 
 
     public static Formula Sudoku2Sat(int[][] sudoku) {
@@ -15,7 +15,7 @@ public class Sudoku2SatBuilder {
         AtLeastOneOccurence();
         RowBuild();
         ColBuild();
-        BoxBuild();
+        //BoxBuild();
         AtMaxOneOccurence();
         testOther(sudoku);
 
@@ -138,11 +138,9 @@ public class Sudoku2SatBuilder {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (sudoku[i][j] > 0) {
-                    int val = sudoku[i][j] - 1;
-                    for (int n = 0; n < 9; n++) {
-                        String l = i + Integer.toString(j) + n;
-                        clauses.add(new Clause((n == val) ? new Literal(l,n,true) : new Literal(l,n,false)));
-                    }
+//                    int val = sudoku[i][j] - 1;
+                    String l = i + Integer.toString(j) + sudoku[i][j];
+                    clauses.add(new Clause(new Literal(l,sudoku[i][j], true)));
                 }
             }
         }

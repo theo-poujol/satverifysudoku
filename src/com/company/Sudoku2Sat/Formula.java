@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Formula {
 
-    private Set<Clause> clauses;
+    private List<Clause> clauses;
     private Set<Variable> variables;
     private Map<String, Variable> map;
 
-    public Formula(Set<Clause> clauses) {
+    public Formula(List<Clause> clauses) {
         this.clauses = clauses;
     }
 
@@ -27,11 +27,11 @@ public class Formula {
         for (Variable v : this.variables) this.map.put(v.getName(), v);
     }
 
-    public Set<Clause> getClauses() {
+    public List<Clause> getClauses() {
         return clauses;
     }
 
-    public void setClauses(Set<Clause> clauses) {
+    public void setClauses(List<Clause> clauses) {
         this.clauses = clauses;
     }
 
