@@ -49,7 +49,7 @@ public class Main {
 
         Sudoku sudoku = new Sudoku(sdk);
 
-        System.out.println("taille " + sudoku.getClauses().size());
+//        System.out.println("taille " + sudoku.getClauses().size());
 
     }
 }

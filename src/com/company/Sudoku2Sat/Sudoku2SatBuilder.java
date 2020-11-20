@@ -7,13 +7,14 @@ public class Sudoku2SatBuilder {
 
     private static List<Clause> clauses = new ArrayList<>();
 
-
     public static Formula Sudoku2Sat(int[][] sudoku) {
 
         AtLeastOneOccurence();
-        RowBuild();
-        ColBuild();
-        BoxBuild();
+//        RowBuild();
+//        ColBuild();
+//        BoxBuild();
+        newRow();
+        newCol();
         AtMaxOneOccurence();
         singletonClause(sudoku);
 
