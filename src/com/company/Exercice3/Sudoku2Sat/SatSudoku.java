@@ -5,16 +5,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-public class Sudoku extends Formula {
+/** Représente le sudoku transformé en SAT **/
 
+public class SatSudoku extends Formula {
+
+
+    /** Matrice du sudoku **/
     public int[][] matrix;
 
-    public Sudoku(int[][] sudoku, int col) throws IOException {
+
+
+    public SatSudoku(int[][] sudoku, int col) throws IOException {
+
+
+        /** On fait la réduction **/
         super(Sudoku2SatBuilder.Sudoku2Sat(sudoku, col));
+
         this.matrix = sudoku;
+
+        /** On met les variables déjà présentes dans le sudoku à vrai **/
         this.process();
-        writeSudokuMiniSat();
     }
+
+
+    /** On met les variables déjà présentes dans le sudoku à vrai **/
 
     public void process() {
         for (int i = 0; i < 9; ++i) {
@@ -26,6 +40,9 @@ public class Sudoku extends Formula {
             }
         }
     }
+
+
+    /** On écrit la formule au format DIMACS CNF dans le fichier test.cnf **/
 
     public void writeSudokuMiniSat() throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("src/com/company/minisatsudoku/test.cnf"));

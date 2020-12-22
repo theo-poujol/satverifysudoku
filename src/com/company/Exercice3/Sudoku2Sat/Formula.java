@@ -2,10 +2,17 @@ package com.company.Sudoku2Sat;
 
 import java.util.*;
 
+
+/** Représente la formule créée suite à la réduction de Sudoku vers SAT **/
 public class Formula {
 
+    /** Liste de clauses **/
     private List<Clause> clauses;
+
+    /** Liste de variables **/
     private Set<Variable> variables;
+
+    /** Map associant le nom d’une variable à sa variable  **/
     private Map<String, Variable> map;
 
     public Formula(List<Clause> clauses) {

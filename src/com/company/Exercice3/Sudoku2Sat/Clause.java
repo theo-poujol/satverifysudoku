@@ -2,9 +2,13 @@ package com.company.Sudoku2Sat;
 
 import java.util.*;
 
+/** Représente une clause présente dans la formule SAT **/
 public class Clause {
 
+    /** Liste de littéraux **/
     private List<Literal> literals;
+
+    /** Liste de variables **/
     private Set<Variable> variables;
 
 

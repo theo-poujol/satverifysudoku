@@ -1,8 +1,12 @@
 package com.company.Sudoku2Sat;
 
+/** Représente un littéral d’une clause **/
 public class Literal {
 
+    /** Variable du littéral **/
     Variable var;
+
+    /** Signe du littéral false = - **/
     boolean sign;
 
     public Literal(Variable var, boolean sign) {

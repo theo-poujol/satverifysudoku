@@ -31,7 +31,6 @@ public class SatParser {
 
             int[] int_affects = convertStr_Int(str_affects);
 
-            System.out.println("LA " + Arrays.toString(int_affects));
             for (int j = 0; j < int_affects.length; j++) {
                 if (int_affects[j] < 0) this.affects[j] = false;
                 else this.affects[j] = true;

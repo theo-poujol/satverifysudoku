@@ -1,9 +1,17 @@
 package com.company.Sudoku2Sat;
 
+
+/** Représente la variable présente dans le littéral Literal. **/
+
 public class Variable {
 
+    /** Nom de la variable **/
     private String name;
+
+    /** Numéro **/
     private int num;
+
+    /** Valeur de la variable dans la formule **/
     private boolean value;
 
     public Variable(String name, int num, boolean value) {
