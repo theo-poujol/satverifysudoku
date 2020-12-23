@@ -1,4 +1,4 @@
-package com.company.SatVerifieur;
+package com.company.Exercice1.SatVerifieur;
 
 import java.util.ArrayList;
 

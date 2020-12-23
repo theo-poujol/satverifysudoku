@@ -1,9 +1,8 @@
-package com.company.Sudoku2Sat;
+package com.company.Exercice3.Sudoku2Sat;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 
 /** Représente le sudoku transformé en SAT **/
 
@@ -45,7 +44,7 @@ public class SatSudoku extends Formula {
     /** On écrit la formule au format DIMACS CNF dans le fichier test.cnf **/
 
     public void writeSudokuMiniSat() throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/com/company/minisatsudoku/test.cnf"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("src/com/company/Exercice3/minisatsudoku/test.cnf"));
 
         bw.write("p cnf " + this.getMap().size() + " " + this.getClauses().size());
         bw.newLine();

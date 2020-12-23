@@ -1,4 +1,4 @@
-package com.company.SatVerifieur;
+package com.company.Exercice1.SatVerifieur;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,8 +17,8 @@ public class SatParser {
         this.formulas = new ArrayList<>();
     }
 
-    public void parseAffects(String filename) throws IOException {
-        String path = "src/com/company/affectations/" + filename;
+    public void parseAffects(String filename) throws Exception {
+        String path = "src/com/company/Exercice1/affectations/" + filename;
         BufferedReader in = new BufferedReader(new FileReader(path));
 
         String line;
@@ -26,7 +26,9 @@ public class SatParser {
 
             String[] str_affects = line.split(" ");
 
-            this.nb_var = str_affects.length;
+            if (this.nb_var != str_affects.length)
+                throw new Exception("Le nombre de var du fichier d'affectation ne correspond pas avec celui du fichier de formules");
+
             this.affects = new boolean[str_affects.length];
 
             int[] int_affects = convertStr_Int(str_affects);
@@ -40,7 +42,7 @@ public class SatParser {
 
     public void parseFormulas(String filename) throws Exception {
 
-        String path = "src/com/company/formulas/" + filename;
+        String path = "src/com/company/Exercice1/formulas/" + filename;
         BufferedReader in = new BufferedReader(new FileReader(path));
 
         String line;
@@ -50,12 +52,13 @@ public class SatParser {
 
             if (str_formulas[0].equals("p")) {
                 this.nb_clauses = Integer.parseInt(str_formulas[3].trim());
+                this.nb_var = Integer.parseInt(str_formulas[2].trim());
 
-                if (this.nb_var != Integer.parseInt(str_formulas[2].trim()))
-                    throw new Exception("Le nombre de var du fichier d'affectation ne correspond pas avec celui du fichier de formules");
+
             }
 
             else {
+
                 int[] int_formula = convertStr_Int(str_formulas);
 
                 SatFormula satFormula = new SatFormula(int_formula.length - 1);
@@ -119,10 +122,10 @@ public class SatParser {
     @Override
     public String toString() {
         return ("" +
-                "Formules " + this.formulas.toString() + '\n' +
-        "Affects " + Arrays.toString(this.affects) + '\n' +
-                "Nombre var " + this.nb_var + '\n' +
-                "Nombre clauses " + this.nb_clauses +
+                "Formule : " + this.formulas.toString() + '\n' +
+        "Affectations : " + Arrays.toString(this.affects) + '\n' +
+                "Nombre de variables : " + this.nb_var + '\n' +
+                "Nombre de clauses : " + this.nb_clauses +
                 "");
     }
 }

@@ -1,4 +1,4 @@
-package com.company.Sudoku2Sat;
+package com.company.Exercice3.Sudoku2Sat;
 
 import java.util.ArrayList;
 import java.util.List;
