@@ -55,6 +55,8 @@ public class ZoneVide2SAT {
     public static void reductionIStoSAT(int[][] graph, int k,String file) throws IOException {
         int nbSommet = graph[0].length;         //On initialise le nombre sommet grâce à la matrice d'adjacence
         int tailleClause = nbSommet - (k - 1);    //On définit la taille des clauses de "combinaison"
+        if (k < 0 || k > nbSommet)
+           throw new IllegalArgumentException("Valeur de k éronné");
         FileWriter fileForSAT = new FileWriter("src/com/company/Ressources/Formules/"+file); // On ecrit ou on crée le fichier Result.txt s'il n'existe pas
         BufferedWriter writer = new BufferedWriter(fileForSAT); // On instancie un bufferedWriter afin d'écrire dans le fichier vu juste au-dessus
         CoefBinomial coefBinomial = new CoefBinomial(); //Cet objet va nous servir à calculer le nombre de clauses dans notre FNC
