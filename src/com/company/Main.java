@@ -1,7 +1,7 @@
 package com.company;
 
-import com.company.Exercice1.SatVerifieur.SatParser;
-import com.company.Exercice1.SatVerifieur.SatVerify;
+import com.company.Exercice1.SatParser;
+import com.company.Exercice1.SatVerify;
 
 public class Main {
 
@@ -12,10 +12,12 @@ public class Main {
 
         /** Création de l'analyseur **/
         SatParser satParser = new SatParser();
-        /** Analsye des affectations **/
-        satParser.parseAffects("a50.txt");
+
         /** Analsye de la formule **/
         satParser.parseFormulas("50-20480.txt");
+
+        /** Analsye des affectations **/
+        satParser.parseAffects("a50.txt");
 
 
         System.out.println("------ [EXERCICE 1] ------");
@@ -26,7 +28,7 @@ public class Main {
 
 
         /** Création du vérificateur **/
-        SatVerify satVerify = new SatVerify(satParser.getFormulas(), satParser.getNb_var(), satParser.getNb_clauses());
+        SatVerify satVerify = new SatVerify(satParser.getFormula(), satParser.getNb_var(), satParser.getNb_clauses());
 
         /** Vérification de la satisfaisabilité **/
         long start = System.nanoTime();

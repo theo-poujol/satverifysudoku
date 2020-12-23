@@ -1,6 +1,7 @@
-package com.company.Exercice1.SatVerifieur;
+package com.company.Exercice1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SatVerify {
 
@@ -34,6 +35,7 @@ public class SatVerify {
             }
             else {
                 v = (-formula.getFormula()[i] -1);
+
                 if (!formula.getAffects()[v]) {
                     formula.setResult(true);
                     return true;
@@ -45,12 +47,12 @@ public class SatVerify {
         return false;
     }
 
-    public ArrayList<SatFormula> getFormulas() {
+    public ArrayList<SatFormula> getFormula() {
         return formulas;
     }
 
-    public void setFormulas(ArrayList<SatFormula> formulas) {
-        this.formulas = formulas;
+    public void setFormula(ArrayList<SatFormula> formula) {
+        this.formulas = formula;
     }
 
     public int getNb_var() {
